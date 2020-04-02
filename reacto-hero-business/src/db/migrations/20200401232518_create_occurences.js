@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('occurence', function(table){
+    return knex.schema.createTable('occurrence', function(table){
         table.increments();
 
         table.string('title').notNullable();
@@ -14,5 +14,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTable('occurence');
+    return knex.schema.dropTable('occurrence');
 };
