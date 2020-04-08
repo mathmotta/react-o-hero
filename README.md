@@ -4,7 +4,7 @@
 
 A project that brings together those who want to help to those who needs.
 
-This is a use case Web and App idea for training.
+This is a use case Web and App idea for training Javascript, NodeJS and React.
 
 
 # Technologies used
