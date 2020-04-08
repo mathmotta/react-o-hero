@@ -1,5 +1,6 @@
 import React from 'react';
-import {MdExitToApp} from 'react-icons/md'
+import { Link } from 'react-router-dom';
+import {MdExitToApp} from 'react-icons/md';
 
 import './styles.css';
 
@@ -17,10 +18,10 @@ export default function Logon(){
                     <input placeholder="Your ID" />
                     <button type="submit" className="button">Go!</button>
 
-                    <a href="/register">
+                    <Link className="back-link" to="/register">
                         <MdExitToApp size={16} color="#e02041" />
                         Sign up
-                    </a>
+                    </Link>
                 </form>
             </section>
 
