@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { MdPowerSettingsNew, MdDelete} from 'react-icons/md'
 
 import api from '../../services/api';
@@ -11,6 +11,7 @@ export default function Profile(){
     const [occurrences, setOccurrences] = useState([]);
     const ngoName = localStorage.getItem('ngoName');
     const ngoId = localStorage.getItem('ngoId');
+    const history = useHistory();
 
     useEffect(() => {
         api.get('ngos/query', {
@@ -36,6 +37,10 @@ export default function Profile(){
         }
     }
 
+    function handleLogout(){
+        localStorage.clear();
+        history.push('/');
+    }
 
     return (
         <div className="profile-container">
@@ -44,7 +49,7 @@ export default function Profile(){
                 <span>Welcome, {ngoName}</span>
 
                 <Link className="button" to="/occurrences/new">Register new occurence</Link>
-                <button type="button">
+                <button type="button" onClick={handleLogout}>
                     <MdPowerSettingsNew size={18} color="#e02041" />
                 </button>
             </header>
