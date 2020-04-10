@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 import {MdArrowBack} from 'react-icons/md';
 
 import api from '../../services/api';
@@ -14,8 +14,29 @@ export default function Register(){
     const [city, setCity] = useState('');
     const [country, setCountry] = useState('');
 
-    function handleRegister(e){
+    const history = useHistory();
+
+    async function handleRegister(e) {
         e.preventDefault();
+
+        const data = {
+            name,
+            email,
+            whatsapp,
+            city,
+            country,
+        };
+
+        try{
+            const response = await api.post('ngos', data);
+
+            alert(`Your access ID: ${response.data.id}`);
+
+            history.push('/')
+        }catch (err){
+            alert(`Registration error!`);
+        }
+
     }
 
     return (
@@ -32,12 +53,12 @@ export default function Register(){
                     </Link>
                 </section>
                 <form onSubmit={handleRegister}>
-                    <input placeholder="NGO Name"/>
-                    <input type="email" placeholder="E-mail"/>
-                    <input placeholder="Whatsapp"/>
+                    <input placeholder="NGO Name" value={name} onChange={e => setName(e.target.value)}/>
+                    <input type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <input placeholder="Whatsapp" value={whatsapp} onChange={e => setWhatsapp(e.target.value)}/>
                     <div className="input-group">
-                        <input placeholder="City"/>
-                        <input placeholder="Country" style={{width:180}}/>
+                        <input placeholder="City" value={city} onChange={e => setCity(e.target.value)}/>
+                        <input placeholder="Country" style={{width:180}} value={country} onChange={e => setCountry(e.target.value)}/>
                     </div>
                     <button className="button" type="submit">Register</button>
                 </form>
