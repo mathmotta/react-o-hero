@@ -13,7 +13,7 @@ export default function Profile(){
                 <img src={logo} alt="Be The Hero"/>
                 <span>Bem vindo, NGO</span>
 
-                <Link className="button" to="/occurences/new">Register new occurence</Link>
+                <Link className="button" to="/occurrences/new">Register new occurence</Link>
                 <button type="button">
                     <MdPowerSettingsNew size={18} color="#e02041" />
                 </button>

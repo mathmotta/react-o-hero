@@ -13,4 +13,5 @@ This is a use case Web and App idea for training Javascript, NodeJS and React.
 * Knex - DB Migrations
 * React - Frontend
 * React Native - Mobile
+* Axios - HTTP Client
 * CircleCI - CI

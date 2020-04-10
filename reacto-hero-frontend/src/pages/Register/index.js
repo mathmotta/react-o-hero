@@ -1,12 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import {MdArrowBack} from 'react-icons/md';
 
+import api from '../../services/api';
 import './styles.css';
 
 import logo from '../../assets/logo.svg';
 
 export default function Register(){
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [whatsapp, setWhatsapp] = useState('');
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
+
+    function handleRegister(e){
+        e.preventDefault();
+    }
+
     return (
         <div className="register-content">
             <div className="content">
@@ -20,7 +31,7 @@ export default function Register(){
                         Back
                     </Link>
                 </section>
-                <form>
+                <form onSubmit={handleRegister}>
                     <input placeholder="NGO Name"/>
                     <input type="email" placeholder="E-mail"/>
                     <input placeholder="Whatsapp"/>
