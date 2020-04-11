@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "reacto-hero-mobile",
-    "slug": "reacto-hero-mobile",
+    "name": "Reacto-O Hero",
+    "slug": "reactohero",
     "platforms": [
       "ios",
       "android",
@@ -13,7 +13,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#e02041"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
