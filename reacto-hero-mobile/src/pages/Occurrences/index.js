@@ -12,6 +12,8 @@ import styles from './styles';
 export default function Occurrences(){
     const [occurrences, setOccurrences] = useState([]);
     const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
 
     function navigateToDetail(occurrence) {
@@ -19,9 +21,24 @@ export default function Occurrences(){
     }
 
     async function loadOccurrences(){
-        const response = await api.get('occurrences')
-        setOccurrences(response.data);
+        if(loading){
+            return;
+        }
+
+        if(total > 0 && occurrences.length === total){
+            return;
+        }
+
+        setLoading(true);
+
+        const response = await api.get('occurrences', {
+            params: { page }
+        })
+
+        setOccurrences([... occurrences, ... response.data]);
         setTotal(response.headers['x-total-count']);
+        setPage(page+1);
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -40,7 +57,13 @@ export default function Occurrences(){
             <Text styles={styles.title}>Welcome!</Text>
             <Text styles={styles.description}>Choose a case below and save the day!</Text>
 
-            <FlatList style={styles.occurrenceList} data={occurrences} keyExtractor={oc => String(oc.id)} showsVerticalScrollIndicator={false} renderItem={({item:occurrence}) => (
+            <FlatList style={styles.occurrenceList} 
+                data={occurrences} 
+                keyExtractor={oc => String(oc.id)} 
+                showsVerticalScrollIndicator={false} 
+                onEndReached={loadOccurrences}
+                onEndReachedThreshold={0.2}
+                renderItem={({item:occurrence}) => (
                 <View style={styles.occurrence}>
                     <Text style={styles.occurrenceProperty}>NGO: </Text>
                     <Text style={styles.occurrenceValue}>{occurrence.name} </Text>
