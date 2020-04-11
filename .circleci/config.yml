@@ -11,6 +11,7 @@ jobs:
           steps:
             - run: cd reacto-hero-business; npm install
             - run: cd reacto-hero-frontend; npm install
+            - run: cd reacto-hero-mobile; npm install
 workflows:
     build-and-test:
       jobs:
