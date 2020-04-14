@@ -9,10 +9,12 @@ This is a use case Web and App idea for training Javascript, NodeJS and React.
 
 # Technologies used
 
-* NodeJS - Backend javascript code
+* Node & Express - Backend javascript code
 * Knex - DB Migrations
 * React - Frontend
 * React Native - Mobile
 * Axios - HTTP Client
 * Expo - Mobile
+* Jest & supertest - Tests
+* Celebrate - Validations
 * CircleCI - CI
