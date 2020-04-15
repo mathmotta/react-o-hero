@@ -19,7 +19,7 @@ routes.post('/sessions', celebrate({
      [Segments.BODY]: Joi.object().keys({
          name: Joi.string().required(),
          email: Joi.string().required().email(),
-         whatsapp: Joi.number().required().min(10).max(12),
+         whatsapp: Joi.string().required().min(10).max(12),
          city: Joi.string().required(),
          country: Joi.string().required(),
      })
