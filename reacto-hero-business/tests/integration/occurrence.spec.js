@@ -51,6 +51,25 @@ describe('occurrence', () => {
         expect(response.status).toBe(204);
     });
 
+    it('should be able to list occurrences by ngo', async () => {
+        const responseNgo = await request(app).post('/ngos').send({
+                name:"IMVF",
+                email:"info@test.pt",
+                whatsapp:"351213256300",
+                city:"Lisboa",
+                country:"Portugal"
+            });
+        
+        const responseOcCreate = await request(app).post('/occurrences').send({
+            title:"SomeOcc",
+            description:"desc",
+            value:120,
+        }).set('authorization',responseNgo.body.id);
+
+        const response = await request(app).get('/ngos/query').send().set('authorization',responseNgo.body.id);
+        expect(response.body[0]).toHaveProperty('id');
+    });
+
     it('should be able to list occurrences', async () => {
         const response = await request(app).get('/occurrences').send();
         
