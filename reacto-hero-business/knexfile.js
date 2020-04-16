@@ -22,7 +22,8 @@ module.exports = {
     },
     migrations: {
       directory: './src/db/migrations'
-    }
+    },
+    useNullAsDefault: true,
   },
 
   staging: {

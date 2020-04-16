@@ -4,12 +4,12 @@ const conn = require('../../src/db/connection');
 
 describe('NGO', () => {
     beforeEach(async () => {
-        await conn.migrate.rollback();
         await conn.migrate.latest();
     });
 
     afterAll(async () => {
         await conn.destroy()
+        await conn.migrate.rollback();
     })
 
     it('should be able to create a new NGO', async () => {
@@ -21,7 +21,13 @@ describe('NGO', () => {
                 country:"Portugal"
             });
         
-            expect(response.body).toHaveProperty('id');
-            expect(response.body.id).toHaveLength(8);
+        expect(response.body).toHaveProperty('id');
+        expect(response.body.id).toHaveLength(8);
+    });
+
+    it('should be able to list NGOs', async () => {
+        const response = await request(app).get('/ngos').send();
+        
+        expect(response.body.length).toBeGreaterThan(0);
     });
 });
